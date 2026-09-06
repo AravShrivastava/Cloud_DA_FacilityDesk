@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Facility Desk — Campus Complaint Tracker</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500;600&family=IBM+Plex+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+<header class="topbar">
+  <div class="topbar__mark">
+    <span class="topbar__mark-glyph">FD</span>
+    <div>
+      <p class="topbar__title">Facility Desk</p>
+      <p class="topbar__subtitle">Campus maintenance ticket log</p>
+    </div>
+  </div>
+  <div class="topbar__api" id="apiStatus">
+    <span class="dot dot--pending"></span> checking API…
+  </div>
+</header>
+
+<main class="layout">
+
+  <!-- Ticket intake form -->
+  <section class="panel panel--form" aria-labelledby="formHeading">
+    <h2 id="formHeading" class="panel__heading">New work order</h2>
+    <form id="complaintForm" novalidate>
+      <input type="hidden" id="complaintId" />
+
+      <label class="field">
+        <span class="field__label">Title</span>
+        <input type="text" id="title" placeholder="e.g. Flickering light in Lab 3" required maxlength="120" />
+      </label>
+
+      <label class="field">
+        <span class="field__label">Description</span>
+        <textarea id="description" rows="3" placeholder="What's wrong, and how it affects use of the space" required maxlength="1000"></textarea>
+      </label>
+
+      <div class="field-row">
+        <label class="field">
+          <span class="field__label">Category</span>
+          <select id="category" required>
+            <option value="Electrical">Electrical</option>
+            <option value="Plumbing">Plumbing</option>
+            <option value="Furniture">Furniture</option>
+            <option value="IT/Network">IT / Network</option>
+            <option value="Housekeeping">Housekeeping</option>
+            <option value="Other">Other</option>
+          </select>
+        </label>
+
+        <label class="field">
+          <span class="field__label">Priority</span>
+          <select id="priority" required>
+            <option value="Low">Low</option>
+            <option value="Medium" selected>Medium</option>
+            <option value="High">High</option>
+          </select>
+        </label>
+      </div>
+
+      <div class="field-row">
+        <label class="field">
+          <span class="field__label">Location</span>
+          <input type="text" id="location" placeholder="Block / Room" required />
+        </label>
+
+        <label class="field">
+          <span class="field__label">Reported by</span>
+          <input type="text" id="reportedBy" placeholder="Your name" required />
+        </label>
+      </div>
+
+      <div class="form__actions">
+        <button type="submit" class="btn btn--primary" id="submitBtn">File ticket</button>
+        <button type="button" class="btn btn--ghost" id="cancelEditBtn" hidden>Cancel edit</button>
+      </div>
+      <p class="form__error" id="formError" role="alert"></p>
+    </form>
+  </section>
+
+  <!-- Ticket list -->
+  <section class="panel panel--list" aria-labelledby="listHeading">
+    <div class="panel__header-row">
+      <h2 id="listHeading" class="panel__heading">Open work orders</h2>
+      <div class="filters">
+        <select id="statusFilter">
+          <option value="">All statuses</option>
+          <option value="Open">Open</option>
+          <option value="In Progress">In Progress</option>
+          <option value="Resolved">Resolved</option>
+        </select>
+        <button class="btn btn--ghost btn--small" id="refreshBtn">Refresh</button>
+      </div>
+    </div>
+
+    <div id="ticketList" class="ticket-list" aria-live="polite">
+      <p class="empty-state">Loading tickets…</p>
+    </div>
+  </section>
+
+</main>
+
+<footer class="foot">
+  <span>BACSE344 · Cloud Infrastructure and Architecture — Digital Assignment · Vercel + Supabase</span>
+</footer>
+
+<script src="script.js"></script>
+</body>
+</html>

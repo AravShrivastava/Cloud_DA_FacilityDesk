@@ -1,0 +1,315 @@
+:root {
+  --paper: #F6F5F1;
+  --surface: #FFFFFF;
+  --ink: #1F2421;
+  --ink-soft: #5B6360;
+  --border: #DDD8CC;
+  --accent: #E85D2B;
+  --accent-ink: #FFFFFF;
+  --success: #2F8F5B;
+  --warning: #B8860B;
+  --danger: #C4432B;
+  --radius: 3px;
+  --font-display: 'Space Grotesk', sans-serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+  --font-mono: 'IBM Plex Mono', monospace;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+}
+
+/* ---------- Topbar ---------- */
+.topbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px;
+  background: var(--ink);
+  color: var(--paper);
+  border-bottom: 3px solid var(--accent);
+}
+
+.topbar__mark {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.topbar__mark-glyph {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 14px;
+  border: 1.5px solid var(--accent);
+  color: var(--accent);
+  padding: 6px 9px;
+  letter-spacing: 0.05em;
+}
+
+.topbar__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 18px;
+  margin: 0;
+}
+
+.topbar__subtitle {
+  margin: 0;
+  font-size: 12px;
+  color: #B7BDB9;
+}
+
+.topbar__api {
+  font-family: var(--font-mono);
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #B7BDB9;
+}
+
+.dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+.dot--pending { background: var(--warning); }
+.dot--ok { background: var(--success); }
+.dot--down { background: var(--danger); }
+
+/* ---------- Layout ---------- */
+.layout {
+  max-width: 1100px;
+  margin: 32px auto;
+  padding: 0 24px;
+  display: grid;
+  grid-template-columns: 340px 1fr;
+  gap: 24px;
+  align-items: start;
+}
+
+@media (max-width: 820px) {
+  .layout { grid-template-columns: 1fr; }
+}
+
+.panel {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+}
+
+.panel__heading {
+  font-family: var(--font-display);
+  font-size: 16px;
+  font-weight: 600;
+  margin: 0 0 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.panel__header-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+.panel__header-row .panel__heading { margin: 0; }
+
+/* ---------- Form ---------- */
+.field {
+  display: block;
+  margin-bottom: 14px;
+}
+
+.field__label {
+  display: block;
+  font-size: 11px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--ink-soft);
+  margin-bottom: 5px;
+}
+
+.field-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 12px;
+}
+
+input[type="text"], textarea, select {
+  width: 100%;
+  font-family: var(--font-body);
+  font-size: 14px;
+  padding: 9px 10px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--paper);
+  color: var(--ink);
+}
+
+input:focus, textarea:focus, select:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 1px;
+}
+
+textarea { resize: vertical; }
+
+.form__actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 4px;
+}
+
+.btn {
+  font-family: var(--font-body);
+  font-weight: 600;
+  font-size: 13px;
+  padding: 10px 16px;
+  border-radius: var(--radius);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: transform 0.06s ease;
+}
+.btn:active { transform: scale(0.98); }
+
+.btn--primary {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn--primary:hover { background: #D2521F; }
+
+.btn--ghost {
+  background: transparent;
+  border-color: var(--border);
+  color: var(--ink);
+}
+.btn--ghost:hover { border-color: var(--ink); }
+
+.btn--small {
+  padding: 7px 12px;
+  font-size: 12px;
+}
+
+.form__error {
+  color: var(--danger);
+  font-size: 13px;
+  min-height: 18px;
+  margin: 10px 0 0;
+}
+
+/* ---------- Filters ---------- */
+.filters {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+.filters select {
+  width: auto;
+  padding: 7px 8px;
+  font-size: 12px;
+}
+
+/* ---------- Ticket list ---------- */
+.ticket-list {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.ticket {
+  display: grid;
+  grid-template-columns: 84px 1fr auto;
+  gap: 14px;
+  align-items: start;
+  border: 1px solid var(--border);
+  border-left: 4px solid var(--accent);
+  border-radius: var(--radius);
+  padding: 14px 16px;
+  background: var(--paper);
+}
+
+.ticket[data-status="Resolved"] { border-left-color: var(--success); opacity: 0.75; }
+.ticket[data-status="In Progress"] { border-left-color: var(--warning); }
+
+.ticket__id {
+  font-family: var(--font-mono);
+  font-size: 11px;
+  color: var(--ink-soft);
+  word-break: break-all;
+}
+
+.ticket__title {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 15px;
+  margin: 0 0 4px;
+}
+
+.ticket__desc {
+  margin: 0 0 8px;
+  color: var(--ink-soft);
+  font-size: 13px;
+}
+
+.ticket__meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  font-size: 11px;
+  font-family: var(--font-mono);
+}
+
+.tag {
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 2px 7px;
+  color: var(--ink-soft);
+}
+
+.tag--status-Open { color: var(--accent); border-color: var(--accent); }
+.tag--status-InProgress { color: var(--warning); border-color: var(--warning); }
+.tag--status-Resolved { color: var(--success); border-color: var(--success); }
+
+.ticket__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: stretch;
+}
+
+.ticket__actions select {
+  font-size: 11px;
+  padding: 5px 6px;
+}
+
+.empty-state {
+  color: var(--ink-soft);
+  font-size: 13px;
+  text-align: center;
+  padding: 24px 0;
+}
+
+/* ---------- Footer ---------- */
+.foot {
+  text-align: center;
+  font-size: 11px;
+  color: var(--ink-soft);
+  padding: 24px 0 40px;
+  font-family: var(--font-mono);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn { transition: none; }
+}

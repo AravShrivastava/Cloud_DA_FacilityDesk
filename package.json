@@ -1,0 +1,20 @@
+{
+  "name": "facility-desk",
+  "version": "2.0.0",
+  "description": "Campus facility complaint tracker — Vercel serverless API + Supabase Postgres",
+  "private": true,
+  "engines": {
+    "node": ">=18.x"
+  },
+  "scripts": {
+    "dev": "vercel dev",
+    "test": "jest --forceExit"
+  },
+  "dependencies": {
+    "@supabase/supabase-js": "^2.45.0"
+  },
+  "devDependencies": {
+    "jest": "^29.7.0",
+    "node-mocks-http": "^1.14.1"
+  }
+}
